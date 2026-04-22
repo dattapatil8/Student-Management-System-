@@ -4,8 +4,17 @@ export function AddNewData(){
   const [id,setid]=useState("");
   const [name,setName]=useState("");
   const [email,setEmail]=useState("");
-  const DataSub=()=>{
+  const DataSub= async()=>{
 console.log(id,name,email)
+const url="http://localhost:3000/Student";
+let responses=await fetch(url,{
+  method:"post",
+  body:JSON.stringify({id,name,email}),
+});
+responses=await responses.json();
+if(responses){
+  alert("Add New Student..");
+}
   }
     return (
     <>
