@@ -12,6 +12,17 @@ export function DisplayData() {
     let response = await fetch(url);
     let data = await response.json();
     setData(data);
+  } 
+  const deleteData=async(id)=>{
+    const url="http://localhost:3000/Student";
+    let response=await fetch(url +"/"+id,{
+     method:"delete",
+    });
+    response=await response.json();
+    if(response){
+      alert("Data deleted...")
+      RandemData();
+    }
   }
 
   return (
@@ -27,6 +38,7 @@ export function DisplayData() {
               <th className="pl-2">Id</th>
               <th className="px-6 py-3 text-left">Name</th>
               <th className="px-6 py-3 text-left">Email</th>
+               <th className="px-6 py-3 text-left">Action</th>
             </tr>
           </thead>
 
@@ -39,6 +51,9 @@ export function DisplayData() {
                 <td className="p-5">{student.id}</td>
                 <td className="p-5">{student.name}</td>
                 <td className="p-5">{student.email}</td>
+                <td className="p-5">
+                  <button onClick={()=>deleteData(student.id)} className="border-2 bg-red-500 w-20 rounded-2xl" >Delete</button>
+                  </td>
               </tr>
             ))}
           </tbody>
