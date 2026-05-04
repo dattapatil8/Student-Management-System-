@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export function DisplayData() {
   const [Data, setData] = useState([]);
+  const navigate=useNavigate("")
 
   useEffect(() => {
     RandemData();
@@ -23,7 +25,10 @@ export function DisplayData() {
       alert("Data deleted...")
       RandemData();
     }
-  }
+    }
+   const editStudent=(id)=>{
+     navigate("/edit/"+id);
+    }
 
   return (
     <>
@@ -33,7 +38,7 @@ export function DisplayData() {
 
     
         <table className="w-full max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-          <thead className="bg-blue-500 text-white">
+          <thead className="bg-blue-500 text-white border-2" >
             <tr>
               <th className="pl-2">Id</th>
               <th className="px-6 py-3 text-left">Name</th>
@@ -53,6 +58,9 @@ export function DisplayData() {
                 <td className="p-5">{student.email}</td>
                 <td className="p-5">
                   <button onClick={()=>deleteData(student.id)} className="border-2 bg-red-500 w-20 rounded-2xl" >Delete</button>
+                  </td>
+                  <td>
+                    <button onClick={()=>editStudent(student.id)}  className="border-2 bg-red-500 w-20 rounded-2xl" >Edit</button>
                   </td>
               </tr>
             ))}

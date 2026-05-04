@@ -1,6 +1,7 @@
 import { Routes,Route,Link } from 'react-router'
 import { DisplayData } from './DisplayData'
 import { AddNewData } from './AddNewData'
+import { EditData } from './EditData'
 
 function App() {
  
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path='/'element={<DisplayData/>}/>
         <Route path='/add'element={<AddNewData/>}/>
+        <Route path='/edit/:id'element={<EditData />}/>
       </Routes>
     
     </>
